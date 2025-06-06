@@ -2,15 +2,27 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import NavBar from './components/NavBar.jsx';
 
+
 const App = () => {
+  return (
+    <Router>
+      <NavBar />
+      <div style={{ padding: '20px' }}>
+        <h1>Bienvenido a la Gestión de Alumnos</h1>
+      </div>
+    </Router>
+  );
+};
+
+
+function App() {
   const [count, setCount] = useState(0)
 
-  const HomePage = () => (
-    <div>
-      <h1>Bienvenido a la Gestión de Alumnos</h1>
+  return (
+    <>
       <div>
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
@@ -31,22 +43,8 @@ const App = () => {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
-    </div>
-  );
-
-  return (
-    <Router>
-      <NavBar />
-      <div style={{ padding: '20px' }}>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/alumnos" element={<div><h2>Lista de Alumnos</h2></div>} />
-          <Route path="/alumnos/nuevo" element={<div><h2>Nuevo Alumno</h2></div>} />
-          <Route path="/acerca-de" element={<div><h2>Acerca de</h2></div>} />
-        </Routes>
-      </div>
-    </Router>
-  );
-};
+    </>
+  )
+}
 
 export default App
