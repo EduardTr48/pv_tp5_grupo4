@@ -6,11 +6,9 @@ import DetalleAlumno from './components/DetalleAlumno.jsx';
 import EliminarAlumno from './components/EliminarAlumno.jsx';
 import AgregarAlumno from './components/AgregarAlumno.jsx';
 import EditarAlumno from './components/EditarAlumno.jsx';
-import AcercaDe from './components/AcercaDe.jsx';
 import alumnosIniciales from './data/alumnosData.js';
 
 const App = () => {
-  const [count, setCount] = useState(0);
   const [alumnos, setAlumnos] = useState(alumnosIniciales);
 
   // Función para agregar un nuevo alumno
@@ -53,7 +51,7 @@ const App = () => {
           <Route path="/alumnos/:id" element={<DetalleAlumno alumnos={alumnos} />} />
           <Route path="/alumnos/:id/editar" element={<EditarAlumno alumnos={alumnos} onActualizarAlumno={actualizarAlumno} />} />
           <Route path="/alumnos/:id/eliminar" element={<EliminarAlumno alumnos={alumnos} onEliminarAlumno={eliminarAlumno} />} />
-          <Route path="/acerca-de" element={<AcercaDe />} />
+          <Route path="/acerca-de" element={<div className="container"><div className="card"><h2>Acerca de</h2></div></div>} />
         </Routes>
       </div>
     </Router>
