@@ -10,8 +10,6 @@
   --color-border: #2c3e50;
   --color-text: #2c3e50;
   --color-text-light: #6c757d;
-  --color-card-bg: #ffffff;
-  --color-input-bg: #ffffff;
 }
 
 /* Modo oscuro con colores pasteles oscuros */
@@ -22,8 +20,6 @@
   --color-border: #e2e8f0;
   --color-text: #f7fafc;
   --color-text-light: #cbd5e0;
-  --color-card-bg: #4a5568;
-  --color-input-bg: #2d3748;
 }
 
 * {
@@ -58,7 +54,6 @@ nav {
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   display: flex;
   justify-content: center;
-  align-items: center;
   gap: 15px;
 }
 
@@ -75,26 +70,6 @@ nav a {
 nav a:hover {
   background-color: var(--color-accent);
   border-color: var(--color-border);
-}
-
-/* Theme toggle button en navbar */
-.theme-toggle-nav {
-  background-color: var(--color-accent) !important;
-  color: var(--color-text) !important;
-  border: 2px solid var(--color-border) !important;
-  padding: 8px 12px !important;
-  border-radius: 6px !important;
-  cursor: pointer;
-  font-size: 16px !important;
-  font-weight: 500 !important;
-  transition: all 0.3s ease !important;
-  margin-left: 10px;
-}
-
-.theme-toggle-nav:hover {
-  background-color: var(--color-card-bg) !important;
-  color: var(--color-text) !important;
-  transform: scale(1.1) !important;
 }
 
 /* Títulos */
@@ -129,7 +104,7 @@ p {
 
 /* Contenedores con bordes */
 .card {
-  background-color: var(--color-card-bg);
+  background-color: white;
   border: 3px solid var(--color-border);
   border-radius: 12px;
   padding: 25px;
@@ -152,7 +127,6 @@ button {
 
 button:hover {
   background-color: var(--color-accent);
-  color: var(--color-text);
   transform: translateY(-1px);
 }
 
@@ -162,7 +136,7 @@ input, select, textarea {
   border-radius: 6px;
   padding: 10px;
   font-size: 16px;
-  background-color: var(--color-input-bg);
+  background-color: white;
   color: var(--color-text);
   transition: border-color 0.3s ease;
 }
@@ -170,13 +144,7 @@ input, select, textarea {
 input:focus, select:focus, textarea:focus {
   outline: none;
   border-color: var(--color-accent);
-  box-shadow: 0 0 0 3px rgba(113, 128, 150, 0.3);
-}
-
-/* Labels */
-label {
-  color: var(--color-text);
-  font-weight: 500;
+  box-shadow: 0 0 0 3px rgba(209, 236, 241, 0.3);
 }
 
 /* Enlaces */
