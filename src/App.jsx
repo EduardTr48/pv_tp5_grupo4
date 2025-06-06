@@ -2,6 +2,21 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import { BrowserRouter as Router } from 'react-router-dom';
+import NavBar from './components/NavBar.jsx';
+
+
+const App = () => {
+  return (
+    <Router>
+      <NavBar />
+      <div style={{ padding: '20px' }}>
+        <h1>Bienvenido a la Gestión de Alumnos</h1>
+      </div>
+    </Router>
+  );
+};
+
 
 function App() {
   const [count, setCount] = useState(0)
