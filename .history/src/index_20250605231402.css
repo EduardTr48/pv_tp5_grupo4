@@ -3,27 +3,13 @@
   line-height: 1.6;
   font-weight: 400;
   
-  /* Colores pasteles modo claro */
+  /* Colores pasteles */
   --color-primary: #f8f9fa;
   --color-secondary: #e8f4f8;
   --color-accent: #d1ecf1;
   --color-border: #2c3e50;
   --color-text: #2c3e50;
   --color-text-light: #6c757d;
-  --color-card-bg: #ffffff;
-  --color-input-bg: #ffffff;
-}
-
-/* Modo oscuro con colores pasteles oscuros */
-:root[data-theme="dark"] {
-  --color-primary: #2d3748;
-  --color-secondary: #4a5568;
-  --color-accent: #718096;
-  --color-border: #e2e8f0;
-  --color-text: #f7fafc;
-  --color-text-light: #cbd5e0;
-  --color-card-bg: #4a5568;
-  --color-input-bg: #2d3748;
 }
 
 * {
@@ -53,13 +39,9 @@ body {
 /* Navegación */
 nav {
   background-color: var(--color-secondary);
-  border-bottom: 3px solid var(--color-border);
+  border-bottom: 2px solid var(--color-border);
   padding: 15px 20px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 15px;
 }
 
 nav a {
@@ -67,7 +49,7 @@ nav a {
   text-decoration: none;
   padding: 8px 16px;
   border-radius: 6px;
-  border: 2px solid transparent;
+  border: 1px solid transparent;
   transition: all 0.3s ease;
   font-weight: 500;
 }
@@ -75,26 +57,6 @@ nav a {
 nav a:hover {
   background-color: var(--color-accent);
   border-color: var(--color-border);
-}
-
-/* Theme toggle button en navbar */
-.theme-toggle-nav {
-  background-color: var(--color-accent) !important;
-  color: var(--color-text) !important;
-  border: 2px solid var(--color-border) !important;
-  padding: 8px 12px !important;
-  border-radius: 6px !important;
-  cursor: pointer;
-  font-size: 16px !important;
-  font-weight: 500 !important;
-  transition: all 0.3s ease !important;
-  margin-left: 10px;
-}
-
-.theme-toggle-nav:hover {
-  background-color: var(--color-card-bg) !important;
-  color: var(--color-text) !important;
-  transform: scale(1.1) !important;
 }
 
 /* Títulos */
@@ -129,8 +91,8 @@ p {
 
 /* Contenedores con bordes */
 .card {
-  background-color: var(--color-card-bg);
-  border: 3px solid var(--color-border);
+  background-color: white;
+  border: 2px solid var(--color-border);
   border-radius: 12px;
   padding: 25px;
   margin: 20px 0;
@@ -141,7 +103,7 @@ p {
 button {
   background-color: var(--color-secondary);
   color: var(--color-text);
-  border: 3px solid var(--color-border);
+  border: 2px solid var(--color-border);
   padding: 10px 20px;
   border-radius: 8px;
   cursor: pointer;
@@ -152,17 +114,16 @@ button {
 
 button:hover {
   background-color: var(--color-accent);
-  color: var(--color-text);
   transform: translateY(-1px);
 }
 
 /* Inputs */
 input, select, textarea {
-  border: 3px solid var(--color-border);
+  border: 2px solid var(--color-border);
   border-radius: 6px;
   padding: 10px;
   font-size: 16px;
-  background-color: var(--color-input-bg);
+  background-color: white;
   color: var(--color-text);
   transition: border-color 0.3s ease;
 }
@@ -170,13 +131,7 @@ input, select, textarea {
 input:focus, select:focus, textarea:focus {
   outline: none;
   border-color: var(--color-accent);
-  box-shadow: 0 0 0 3px rgba(113, 128, 150, 0.3);
-}
-
-/* Labels */
-label {
-  color: var(--color-text);
-  font-weight: 500;
+  box-shadow: 0 0 0 3px rgba(209, 236, 241, 0.3);
 }
 
 /* Enlaces */
@@ -187,26 +142,4 @@ a {
 
 a:hover {
   color: var(--color-text-light);
-}
-
-/* Theme toggle button */
-.theme-toggle {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background-color: var(--color-accent);
-  color: var(--color-text);
-  border: 3px solid var(--color-border);
-  padding: 12px 16px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  z-index: 1000;
-}
-
-.theme-toggle:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }

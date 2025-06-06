@@ -21,9 +21,9 @@ const App = () => {
       <div style={{ padding: '20px' }}>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/alumnos" element={<div className="container"><div className="card"><h2>Lista de Alumnos</h2></div></div>} />
-          <Route path="/alumnos/nuevo" element={<div className="container"><div className="card"><h2>Nuevo Alumno</h2></div></div>} />
-          <Route path="/acerca-de" element={<div className="container"><div className="card"><h2>Acerca de</h2></div></div>} />
+          <Route path="/alumnos" element={<div><h2>Lista de Alumnos</h2></div>} />
+          <Route path="/alumnos/nuevo" element={<div><h2>Nuevo Alumno</h2></div>} />
+          <Route path="/acerca-de" element={<div><h2>Acerca de</h2></div>} />
         </Routes>
       </div>
     </Router>
