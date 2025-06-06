@@ -5,8 +5,6 @@ const ListaAlumnos = ({ alumnos, onEliminarAlumno }) => {
   const [filtroTexto, setFiltroTexto] = useState('');
   const [filtroCurso, setFiltroCurso] = useState('');
   const [alumnosFiltrados, setAlumnosFiltrados] = useState(alumnos);
-  const [alumnoAEliminar, setAlumnoAEliminar] = useState(null);
-  const [mostrarModalEliminar, setMostrarModalEliminar] = useState(false);
 
   // Evento sintético onChange para filtro de texto
   const handleFiltroTextoChange = (event) => {
@@ -24,25 +22,18 @@ const ListaAlumnos = ({ alumnos, onEliminarAlumno }) => {
     aplicarFiltros();
   };
 
-  // Evento sintético onClick para mostrar modal de eliminación
-  const handleMostrarModalEliminar = (alumno) => {
-    setAlumnoAEliminar(alumno);
-    setMostrarModalEliminar(true);
-  };
-
-  // Evento sintético onClick para cerrar modal de eliminación
-  const handleCerrarModalEliminar = () => {
-    setMostrarModalEliminar(false);
-    setAlumnoAEliminar(null);
-  };
-
-  // Evento sintético onClick para confirmar eliminación
-  const handleConfirmarEliminacion = () => {
-    if (onEliminarAlumno && alumnoAEliminar) {
-      onEliminarAlumno(alumnoAEliminar.Lu);
-      alert(`El alumno ${alumnoAEliminar.nombre} ${alumnoAEliminar.apellido} ha sido eliminado exitosamente.`);
+  // Evento sintético onClick para eliminar con confirmación
+  const handleEliminarAlumno = (alumno) => {
+    const confirmacion = window.confirm(
+      `¿Estás seguro de que deseas eliminar al alumno ${alumno.nombre} ${alumno.apellido}?\n\nEsta acción no se puede deshacer.`
+    );
+    
+    if (confirmacion) {
+      if (onEliminarAlumno) {
+        onEliminarAlumno(alumno.Lu);
+      }
+      alert(`El alumno ${alumno.nombre} ${alumno.apellido} ha sido eliminado exitosamente.`);
     }
-    handleCerrarModalEliminar();
   };
 
   // Función manejadora para aplicar filtros con datos específicos
@@ -82,11 +73,7 @@ const ListaAlumnos = ({ alumnos, onEliminarAlumno }) => {
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.key === 'Escape') {
-        if (mostrarModalEliminar) {
-          handleCerrarModalEliminar();
-        } else {
-          handleLimpiarFiltros();
-        }
+        handleLimpiarFiltros();
       }
     };
 
@@ -95,7 +82,7 @@ const ListaAlumnos = ({ alumnos, onEliminarAlumno }) => {
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, [mostrarModalEliminar]);
+  }, []);
 
   // Aplicar filtros cuando cambien los valores o la lista de alumnos
   useEffect(() => {
@@ -184,13 +171,13 @@ const ListaAlumnos = ({ alumnos, onEliminarAlumno }) => {
                     <Link to={`/alumnos/${alumno.Lu}/editar`} className="btn-editar">
                       ✏️ Editar
                     </Link>
-                    <button 
+                    <Link 
+                      to={`/alumnos/${alumno.Lu}/eliminar`} 
                       className="btn-eliminar"
-                      onClick={() => handleMostrarModalEliminar(alumno)}
                       title={`Eliminar a ${alumno.nombre} ${alumno.apellido}`}
                     >
                       🗑️ Eliminar
-                    </button>
+                    </Link>
                   </div>
                 </div>
               ))}
@@ -198,45 +185,6 @@ const ListaAlumnos = ({ alumnos, onEliminarAlumno }) => {
           </>
         )}
       </div>
-
-      {/* Modal de confirmación de eliminación */}
-      {mostrarModalEliminar && alumnoAEliminar && (
-        <div className="modal-overlay" onClick={handleCerrarModalEliminar}>
-          <div className="modal-content modal-eliminar" onClick={(e) => e.stopPropagation()}>
-            <div className="modal-header">
-              <h3>🚨 Confirmar Eliminación</h3>
-              <button onClick={handleCerrarModalEliminar} className="modal-close">✕</button>
-            </div>
-            
-            <div className="modal-body">
-              <div className="alumno-eliminar-preview">
-                <div className="foto-placeholder-modal">
-                  {alumnoAEliminar.nombre.charAt(0)}{alumnoAEliminar.apellido.charAt(0)}
-                </div>
-                <div className="info-eliminar">
-                  <h4>{alumnoAEliminar.nombre} {alumnoAEliminar.apellido}</h4>
-                  <p><strong>LU:</strong> {alumnoAEliminar.Lu}</p>
-                  <p><strong>Curso:</strong> {alumnoAEliminar.curso}</p>
-                </div>
-              </div>
-              
-              <div className="warning-mensaje">
-                <p>¿Estás <strong>seguro</strong> de que deseas eliminar a este alumno?</p>
-                <p className="advertencia">⚠️ Esta acción <strong>NO se puede deshacer</strong></p>
-              </div>
-            </div>
-            
-            <div className="modal-footer">
-              <button onClick={handleCerrarModalEliminar} className="btn-modal-cancelar">
-                Cancelar
-              </button>
-              <button onClick={handleConfirmarEliminacion} className="btn-modal-eliminar">
-                Sí, Eliminar
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

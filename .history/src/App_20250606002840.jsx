@@ -38,7 +38,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/alumnos" element={<ListaAlumnos alumnos={alumnos} onEliminarAlumno={eliminarAlumno} />} />
-          <Route path="/alumnos/nuevo" element={<AgregarAlumno onAgregarAlumno={agregarAlumno} alumnos={alumnos} />} />
+          <Route path="/alumnos/nuevo" element={<AgregarAlumno onAgregarAlumno={agregarAlumno} />} />
           <Route path="/alumnos/:id" element={<DetalleAlumno alumnos={alumnos} />} />
           <Route path="/alumnos/:id/editar" element={<div className="container"><div className="card"><h2>Editar Alumno</h2></div></div>} />
           <Route path="/alumnos/:id/eliminar" element={<EliminarAlumno alumnos={alumnos} onEliminarAlumno={eliminarAlumno} />} />

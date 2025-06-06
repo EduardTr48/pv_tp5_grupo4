@@ -816,69 +816,6 @@ a:hover {
   border-color: #dc3545 !important;
   box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.25) !important;
   background-color: #fff5f5 !important;
-  animation: shake 0.5s ease-in-out;
-}
-
-@keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-5px); }
-  75% { transform: translateX(5px); }
-}
-
-:root[data-theme="dark"] .input-error {
-  background-color: #4a1a1a !important;
-}
-
-.error-mensaje {
-  color: #dc3545;
-  font-size: 12px;
-  font-weight: 500;
-  margin-top: 5px;
-  padding: 8px;
-  background-color: #fff5f5;
-  border-radius: 4px;
-  border-left: 4px solid #dc3545;
-  animation: slideDown 0.3s ease-out;
-}
-
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Indicador de campo válido */
-.input-success {
-  border-color: #28a745 !important;
-  box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.25) !important;
-}
-
-/* Mensaje de éxito para campos validados */
-.success-mensaje {
-  color: #155724;
-  font-size: 12px;
-  font-weight: 500;
-  margin-top: 5px;
-  padding: 6px;
-  background-color: #d4edda;
-  border-radius: 4px;
-  border-left: 4px solid #28a745;
-}
-
-:root[data-theme="dark"] .success-mensaje {
-  background-color: #1b4332;
-  color: #d1e7dd;
-}
-
-.input-error {
-  border-color: #dc3545 !important;
-  box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.25) !important;
-  background-color: #fff5f5 !important;
 }
 
 :root[data-theme="dark"] .input-error {
