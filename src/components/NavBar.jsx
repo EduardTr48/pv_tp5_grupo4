@@ -1,54 +1,61 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+    const automaticDarkMode = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+    ).matches;
 
-  // Evento sintético onClick para toggle del tema
-  const handleThemeToggle = () => {
-    setIsDarkMode(prevMode => !prevMode);
-  };
+    const [isDarkMode, setIsDarkMode] = useState(automaticDarkMode);
 
-  // Uso de evento nativo con addEventListener en useEffect
-  useEffect(() => {
-    // Evento nativo para detectar teclas (ejemplo: 'T' para toggle tema)
-    const handleKeyPress = (event) => {
-      if (event.key === 't' || event.key === 'T') {
-        setIsDarkMode(prevMode => !prevMode);
-      }
+    // Evento sintético onClick para toggle del tema
+    const handleThemeToggle = () => {
+        setIsDarkMode((prevMode) => !prevMode);
     };
 
-    // Agregar event listener nativo
-    document.addEventListener('keydown', handleKeyPress);
+    // Uso de evento nativo con addEventListener en useEffect
+    useEffect(() => {
+        // Evento nativo para detectar teclas (ejemplo: 'T' para toggle tema)
+        const handleKeyPress = (event) => {
+            if (event.key === "t" || event.key === "T") {
+                setIsDarkMode((prevMode) => !prevMode);
+            }
+        };
 
-    // Cleanup del event listener
-    return () => {
-      document.removeEventListener('keydown', handleKeyPress);
-    };
-  }, []);
+        // Agregar event listener nativo
+        document.addEventListener("keydown", handleKeyPress);
 
-  // Aplicar el tema al documento
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
-  }, [isDarkMode]);
+        // Cleanup del event listener
+        return () => {
+            document.removeEventListener("keydown", handleKeyPress);
+        };
+    }, []);
 
-  return (
-    <nav>
-      <Link to="/">Inicio</Link>
-      <Link to="/alumnos">Lista de Alumnos</Link>
-      <Link to="/alumnos/nuevo">Nuevo Alumno</Link>
-      <Link to="/acerca-de">Acerca de</Link>
-      
-      {/* Botón toggle tema - evento onClick sintético */}
-      <button 
-        className="theme-toggle-nav" 
-        onClick={handleThemeToggle}
-        title="Cambiar tema (o presiona T)"
-      >
-        {isDarkMode ? '☀️' : '🌙'}
-      </button>
-    </nav>
-  );
+    // Aplicar el tema al documento
+    useEffect(() => {
+        document.documentElement.setAttribute(
+            "data-theme",
+            isDarkMode ? "dark" : "light"
+        );
+    }, [isDarkMode]);
+
+    return (
+        <nav>
+            <Link to="/">Inicio</Link>
+            <Link to="/alumnos">Lista de Alumnos</Link>
+            <Link to="/alumnos/nuevo">Nuevo Alumno</Link>
+            <Link to="/acerca-de">Acerca de</Link>
+
+            {/* Botón toggle tema - evento onClick sintético */}
+            <button
+                className="theme-toggle-nav"
+                onClick={handleThemeToggle}
+                title="Cambiar tema (o presiona T)"
+            >
+                {isDarkMode ? "☀️" : "🌙"}
+            </button>
+        </nav>
+    );
 };
 
 export default NavBar;
