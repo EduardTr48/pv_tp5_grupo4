@@ -15,7 +15,8 @@ import {
   ListItemIcon,
   ListItemText,
   Button,
-  Stack
+  Stack,
+  useTheme // Importa el hook useTheme
 } from '@mui/material';
 import {
   School as SchoolIcon,
@@ -33,7 +34,7 @@ import { useNavigate } from 'react-router-dom';
 
 const AcercaDe = () => {
   const navigate = useNavigate();
-
+  const theme = useTheme(); 
   const handleVolver = () => {
     navigate('/');
   };
@@ -47,165 +48,89 @@ const AcercaDe = () => {
     { nombre: 'React Router', color: '#CA4245' }
   ];
 
-  const caracteristicas = [
-    {
-      icon: <SchoolIcon color="primary" />,
-      titulo: 'Sistema Educativo',
-      descripcion: 'Gestión completa de información estudiantil'
-    },
-    {
-      icon: <CodeIcon color="primary" />,
-      titulo: 'Tecnología Moderna',
-      descripcion: 'Desarrollado con React y Material-UI'
-    },
-    {
-      icon: <GroupIcon color="primary" />,
-      titulo: 'Interfaz Intuitiva',
-      descripcion: 'Diseño centrado en la experiencia del usuario'
-    },
-    {
-      icon: <StarIcon color="primary" />,
-      titulo: 'Funcionalidades Avanzadas',
-      descripcion: 'CRUD completo con validaciones inteligentes'
-    }
+  const integrantes = [
+    { nombre: 'Eduardo Tiago Rodriguez', lu: 'LU20220202', avatar: '/src/assets/avatar1.jpg' },
+    { nombre: 'Alex Gabriel Calatayud' , lu: 'LU20220203', avatar: '/src/assets/avatar2.jpg' },
+    { nombre: 'Rodriguez Pablo Alejandro', lu: 'LU20220204', avatar: '/src/assets/avatar3.jpg'}
   ];
 
   return (
-    <Container maxWidth="lg" sx={{ py: 4 }}>
-      <Paper elevation={3} sx={{ p: 4, borderRadius: 3 }}>
-        {/* Header */}
-        <Box textAlign="center" mb={4}>
-          <Avatar
-            sx={{
-              width: 80,
-              height: 80,
-              mx: 'auto',
-              mb: 2,
-              bgcolor: 'primary.main',
-              fontSize: '2rem'
-            }}
-          >
-            📚
-          </Avatar>
-          <Typography variant="h3" component="h1" gutterBottom color="primary">
-            Sistema de Gestión de Alumnos
+    <Container maxWidth="md" sx={{ py: 4 }}>
+      <Paper elevation={6} sx={{ p: 4, borderRadius: '12px', mb: 4, backgroundColor: theme.palette.background.paper, color: theme.palette.text.primary }}> 
+        <Typography variant="h4" component="h1" gutterBottom align="center" sx={{ fontWeight: 'bold', mb: 3,color: '#000000'}}>
+          Acerca de Nuestro Proyecto
+        </Typography>
+
+        {/* Sección de Introducción */}
+        <Box sx={{ mb: 4 }}>
+          <Typography variant="body1" paragraph align="center" sx={{ color: theme.palette.text.secondary }}>
+            Este proyecto fue desarrollado como Trabajo Práctico N°5 para la asignatura Programación Visual,
+            perteneciente a la carrera de Analista Programador Universitario en la Facultad de Ingeniería de la UNJU.
           </Typography>
-          <Typography variant="h6" color="text.secondary" maxWidth="600px" mx="auto">
-            Una aplicación web moderna para la administración eficiente de información estudiantil
+          <Typography variant="body1" paragraph align="center" sx={{ color: theme.palette.text.secondary }}>
+            La aplicación permite gestionar una lista de alumnos, con funcionalidades de creación, lectura, actualización y eliminación (CRUD).
           </Typography>
         </Box>
 
-        <Divider sx={{ my: 4 }} />
+        <Divider sx={{ my: 3 }} />
 
-        {/* Información del Proyecto */}
-        <Grid container spacing={4} mb={4}>
-          <Grid item xs={12} md={8}>
-            <Typography variant="h4" gutterBottom color="primary">
-              Acerca del Proyecto
-            </Typography>
-            <Typography variant="body1" paragraph sx={{ lineHeight: 1.8 }}>
-              Este sistema fue desarrollado como parte del <strong>Trabajo Práctico N°5</strong> 
-              para la materia de <strong>Programación Visual</strong>. Representa una solución 
-              integral para la gestión de información estudiantil, implementando las mejores 
-              prácticas de desarrollo web moderno.
-            </Typography>
-            <Typography variant="body1" paragraph sx={{ lineHeight: 1.8 }}>
-              El proyecto demuestra el uso avanzado de React, incluyendo hooks, manejo de estado, 
-              routing, validaciones en tiempo real, y una interfaz de usuario responsiva y accesible 
-              construida con Material-UI.
-            </Typography>
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <Card elevation={2} sx={{ height: '100%' }}>
-              <CardContent>
-                <Typography variant="h6" gutterBottom color="primary">
-                  Información del Proyecto
-                </Typography>
-                <List dense>
-                  <ListItem>
-                    <ListItemIcon>
-                      <CalendarIcon color="primary" />
-                    </ListItemIcon>
-                    <ListItemText primary="Fecha" secondary="2024" />
-                  </ListItem>
-                  <ListItem>
-                    <ListItemIcon>
-                      <SchoolIcon color="primary" />
-                    </ListItemIcon>
-                    <ListItemText primary="Materia" secondary="Programación Visual" />
-                  </ListItem>
-                  <ListItem>
-                    <ListItemIcon>
-                      <CodeIcon color="primary" />
-                    </ListItemIcon>
-                    <ListItemText primary="Tipo" secondary="Trabajo Práctico N°5" />
-                  </ListItem>
-                  <ListItem>
-                    <ListItemIcon>
-                      <GroupIcon color="primary" />
-                    </ListItemIcon>
-                    <ListItemText primary="Grupo" secondary="Grupo 4" />
-                  </ListItem>
-                </List>
-              </CardContent>
-            </Card>
-          </Grid>
-        </Grid>
-
-        {/* Características */}
-        <Typography variant="h4" gutterBottom color="primary" mb={3}>
-          Características Principales
-        </Typography>
-        <Grid container spacing={3} mb={4}>
-          {caracteristicas.map((caracteristica, index) => (
-            <Grid item xs={12} sm={6} md={3} key={index}>
-              <Card 
-                elevation={2} 
-                sx={{ 
-                  height: '100%',
-                  transition: 'transform 0.2s, box-shadow 0.2s',
-                  '&:hover': {
-                    transform: 'translateY(-4px)',
-                    boxShadow: 4
-                  }
-                }}
-              >
-                <CardContent sx={{ textAlign: 'center' }}>
-                  <Box mb={2}>
-                    {caracteristica.icon}
-                  </Box>
-                  <Typography variant="h6" gutterBottom>
-                    {caracteristica.titulo}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    {caracteristica.descripcion}
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
-
-        {/* Tecnologías */}
-        <Typography variant="h4" gutterBottom color="primary" mb={3}>
-          Tecnologías Utilizadas
-        </Typography>
-        <Box mb={4}>
-          <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
-            {tecnologias.map((tech, index) => (
+        {/* Sección de Tecnologías Utilizadas */}
+        <Box sx={{ mb: 4 }}>
+          <Typography variant="h5" component="h2" gutterBottom align="center" sx={{ fontWeight: 'bold', mb: 2,color: '#000000'}}>
+            Tecnologías Utilizadas
+          </Typography>
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 1.5 }}>
+            {tecnologias.map((tec) => (
               <Chip
-                key={index}
-                label={tech.nombre}
+                key={tec.nombre}
+                label={tec.nombre}
+                icon={<CodeIcon />}
                 sx={{
-                  bgcolor: tech.color,
-                  color: tech.nombre === 'JavaScript' ? '#000' : '#fff',
+                  backgroundColor: tec.color,
+                  color: theme.palette.getContrastText(tec.color), // Asegura que el color del texto sea legible
                   fontWeight: 'bold',
-                  mb: 1
+                  p: 1
                 }}
               />
             ))}
-          </Stack>
+          </Box>
         </Box>
+
+        <Divider sx={{ my: 3 }} />
+
+        {/* Sección de Integrantes del Grupo */}
+        <Box sx={{ mb: 4 }}>
+          <Typography variant="h5" component="h2" gutterBottom align="center" sx={{ fontWeight: 'bold', mb: 2,color: '#000000'}}>
+            Integrantes del Grupo 4
+          </Typography>
+          <Grid container spacing={3} justifyContent="center">
+            {integrantes.map((integrante) => (
+              <Grid item xs={12} sm={6} md={4} key={integrante.lu}>
+                <Card variant="outlined" sx={{ borderRadius: '8px', boxShadow: 3, transition: '0.3s', '&:hover': { boxShadow: 6 }, backgroundColor: theme.palette.background.default }}> 
+                  <CardContent sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', p: 3 }}>
+                    <Avatar
+                      alt={integrante.nombre}
+                      src={integrante.avatar}
+                      sx={{ width: 80, height: 80, mb: 2, border: `2px solid ${theme.palette.primary.main}` }}
+                    />
+                    <Typography variant="h6" component="div" sx={{ fontWeight: 'bold', color: theme.palette.text.primary }}>
+                      {integrante.nombre}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+                      {integrante.lu}
+                    </Typography>
+                    <Stack direction="row" spacing={1} sx={{ mt: 1 }}>
+                      <Chip label="Estudiante" size="small" color="primary" />
+                      <Chip label="Desarrollador" size="small" color="secondary" />
+                    </Stack>
+                  </CardContent>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+        </Box>
+
+        <Divider sx={{ my: 3 }} />
 
         {/* Funcionalidades */}
         <Typography variant="h4" gutterBottom color="primary" mb={3}>
@@ -284,42 +209,32 @@ const AcercaDe = () => {
           </Grid>
         </Grid>
 
-        {/* Contacto */}
-        <Card elevation={3} sx={{ bgcolor: 'primary.main', color: 'white', mb: 4 }}>
+        {/* Información adicional del Proyecto */}
+        <Card variant="outlined" sx={{ borderRadius: '8px', boxShadow: 3, mb: 4, backgroundColor: theme.palette.background.default }}> {/* Aplica los colores del tema */}
           <CardContent>
-            <Typography variant="h5" gutterBottom>
-              Información de Contacto
+            <Typography variant="h6" component="h3" gutterBottom align="center" sx={{ fontWeight: 'bold', mb: 2,color: '#000000'}}>
+              Detalles del Proyecto
             </Typography>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <Box display="flex" alignItems="center" mb={1}>
-                  <EmailIcon sx={{ mr: 1 }} />
+                  <SchoolIcon color="primary" sx={{ mr: 1 }} />
                   <Typography variant="body2">
-                    grupo4@
+                    Asignatura: Programación Visual
+                  </Typography>
+                </Box>
+                <Box display="flex" alignItems="center" mb={1}>
+                  <CalendarIcon color="primary" sx={{ mr: 1 }} />
+                  <Typography variant="body2">
+                    Año: 2025
                   </Typography>
                 </Box>
               </Grid>
               <Grid item xs={12} sm={6}>
                 <Box display="flex" alignItems="center" mb={1}>
-                  <SchoolIcon sx={{ mr: 1 }} />
+                  <LocationIcon color="primary" sx={{ mr: 1 }} />
                   <Typography variant="body2">
-                    Universidad Nacional de Jujuy
-                  </Typography>
-                </Box>
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <Box display="flex" alignItems="center" mb={1}>
-                  <GitHubIcon sx={{ mr: 1 }} />
-                  <Typography variant="body2">
-                  github.com/EduardTr48/pv_tp5_grupo4
-                  </Typography>
-                </Box>
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <Box display="flex" alignItems="center" mb={1}>
-                  <LocationIcon sx={{ mr: 1 }} />
-                  <Typography variant="body2">
-                    Facultad de Ingeniería unju
+                    Facultad de Ingeniería UNJU
                   </Typography>
                 </Box>
               </Grid>
@@ -328,7 +243,7 @@ const AcercaDe = () => {
         </Card>
 
         {/* Botones de acción */}
-        <Box textAlign="center">
+        <Box textAlign="center" mt={4}>
           <Stack direction="row" spacing={2} justifyContent="center">
             <Button
               variant="contained"
@@ -351,7 +266,7 @@ const AcercaDe = () => {
           </Stack>
         </Box>
 
-        {/* Footer */}
+        {/* Pie de página */}
         <Box textAlign="center" mt={4} pt={3} borderTop={1} borderColor="divider">
           <Typography variant="body2" color="text.secondary">
             © 2025 Grupo 4 - Programación Visual - Trabajo Práctico N°5

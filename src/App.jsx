@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react"; // Importa useEffect
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar.jsx";
 import ListaAlumnos from "./components/ListaAlumnos.jsx";
@@ -12,6 +12,19 @@ import HomePage from "./components/HomePage.jsx";
 
 const App = () => {
     const [alumnos, setAlumnos] = useState(alumnosIniciales);
+    const [darkMode, setDarkMode] = useState(false); 
+
+    useEffect(() => {
+        if (darkMode) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        } else {
+            document.documentElement.removeAttribute('data-theme');
+        }
+    }, [darkMode]);
+
+    const toggleDarkMode = () => {
+        setDarkMode((prevMode) => !prevMode);
+    };
 
     // Función para agregar un nuevo alumno
     const agregarAlumno = (nuevoAlumno) => {
@@ -36,8 +49,8 @@ const App = () => {
 
     return (
         <Router>
-            <NavBar />
-            <div style={{ padding: "20px" }}>
+            <div>
+                <NavBar darkMode={darkMode} toggleDarkMode={toggleDarkMode} /> 
                 <Routes>
                     <Route path="/" element={<HomePage />} />
                     <Route
@@ -80,7 +93,7 @@ const App = () => {
                             />
                         }
                     />
-                    <Route path="/acerca-de" element={<AcercaDe />} />
+                    <Route path="/acerca-de" element={<AcercaDe darkMode={darkMode} />} /> 
                 </Routes>
             </div>
         </Router>
