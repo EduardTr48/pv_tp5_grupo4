@@ -20,7 +20,7 @@
   --color-secondary: #4a5568;
   --color-accent: #718096;
   --color-border: #e2e8f0;
-  --color-text: #f7fafc;
+  --color-text: #030b11;
   --color-text-light: #cbd5e0;
   --color-card-bg: #4a5568;
   --color-input-bg: #2d3748;
@@ -122,7 +122,7 @@ h3 {
 
 /* Párrafos */
 p {
-  color: var(--color-text-light);
+  color: var(--color-text);
   margin-bottom: 12px;
   line-height: 1.8;
 }
